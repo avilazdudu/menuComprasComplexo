@@ -190,3 +190,15 @@ button{
     text-decoration: underline;
     color: blue;
 }
+#removeAll{
+    position: absolute;
+    bottom: 100px;
+    right: 30px;
+    height: 50px;
+    width: 100px;
+    margin: 0 auto;
+    color: white;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    z-index: 1002;
+}

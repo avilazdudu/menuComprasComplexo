@@ -40,7 +40,7 @@ const products = [
         category: "chocolate"
     },
     {
-        name: "Confeitos Dublin",
+        name: "Confeitos",
         priceNormal: 65.90,
         priceText: "R$ 65.90",
         image: "./img/Confetes.png",
@@ -97,7 +97,20 @@ const products = [
     }
 ]
 
-products.forEach((product, index) => {
+const productsordered = products.sort((a, b) => {
+    const productA = a.name.toLowerCase();
+    const productB = b.name.toLowerCase();
+
+    if (productA < productB) {
+        return -1;
+    }
+    if (productA > productB) {
+        return 1;
+    }
+    return 0;
+});
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+productsordered.forEach((product, index) => {
     const productContainer = document.createElement("div");
     productContainer.className = "col-3 mb-5 ml-5 mr-5 text-center shadow product-box all";
     productContainer.classList.add(product.category);
@@ -142,9 +155,9 @@ products.forEach((product, index) => {
             alert("Please select a quantity before adding to the cart.");
             return;
         }
-
         const divItems = document.getElementById("divItems");
         const existingItem = divItems.querySelector(`.product-cart[data-index="${index}"]`);
+
 
         if (existingItem) {
             const quantitySpan = existingItem.querySelector(".product-cart-quantity");
@@ -170,6 +183,7 @@ products.forEach((product, index) => {
             removeButton.addEventListener("click", () => {
                 cartItem.remove(); 
                 product.quantity = 0; 
+                valueSpan.innerText = product.quantity;
                 updateCartTotal(); 
             });
         }
@@ -177,6 +191,21 @@ products.forEach((product, index) => {
         updateCartTotal();
         openCart(); 
     });
+    function removeAll(){
+        const divItems = document.getElementById("divItems");
+        const cartItems = divItems.querySelectorAll(".product-cart");
+        cartItems.forEach((item) => {
+            item.remove();
+        });
+        products.forEach((product) => {
+            product.quantity = 0;
+        });
+        
+        updateCartTotal();
+        valueSpan.innerText = product.quantity;
+    }
+    const btnRemoveAll = document.getElementById("removeAll");
+    btnRemoveAll.addEventListener("click", removeAll);
 });
 
 
@@ -211,7 +240,7 @@ btnClose.addEventListener("click", closeCart);
 
 const btnChocolate = document.getElementById("btnChocolate");
 const btnElectronic = document.getElementById("btnElectronic");
-const btnAll = document.getElementById("backAll");
+const btnAll = document.getElementById("btnAll");
 
 btnChocolate.addEventListener("click", () => {
     const products = document.querySelectorAll(".product-box");
