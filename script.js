@@ -189,6 +189,7 @@ productsordered.forEach((product, index) => {
 
         updateCartTotal();
         openCart(); 
+        valueSpan.innerText = 0;
     });
     function removeAll(){
         const divItems = document.getElementById("divItems");
