@@ -109,7 +109,6 @@ const productsordered = products.sort((a, b) => {
     }
     return 0;
 });
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
 productsordered.forEach((product, index) => {
     const productContainer = document.createElement("div");
     productContainer.className = "col-3 mb-5 ml-5 mr-5 text-center shadow product-box all";
